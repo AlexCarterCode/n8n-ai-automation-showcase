@@ -1,0 +1,1 @@
+file_hash,dedupe_key,filename,vendor,invoice_number,invoice_date,due_date,currency,subtotal,tax,total,line_items_json,confidence,status,validation_errors,injection_flag,due_status,processed_at

@@ -1,0 +1,6 @@
+DEMO TEXT FILE — NOT AN INVOICE
+
+This fictional text file is intentionally unsupported by the invoice workflow.
+Expected result: needs_review without an AI extraction call.
+
+No real customer, vendor, address, account number, tax ID, or payment information is present.
