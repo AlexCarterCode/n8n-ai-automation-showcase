@@ -1,35 +1,125 @@
 # n8n AI Automation Showcase
 
-Three production-style n8n workflows that put AI to work on everyday business tasks: qualifying leads, extracting invoice data, and triaging a shared inbox.
+Practical n8n automation workflows focused on AI-assisted business processes, validation, routing, and human review.
 
-The design rule behind all three: **AI understands, code decides.** The model reads and extracts; plain code validates, scores, deduplicates and routes. Untrusted input (leads, invoices, emails) is treated as data, never as instructions.
+## What I Build
 
-## Demos
+I build n8n workflows that connect business inputs to structured decisions and actions.
 
-| # | Workflow | What it does | Stack |
-|---|---|---|---|
-| 1 | [AI Lead Qualification & Routing](01-lead-qualification/) | Validates and normalizes inbound leads, scores them (rules + AI), routes HOT / WARM / COLD / NEEDS_REVIEW | Webhook, Gemini, Code |
-| 2 | [AI Invoice Extraction & Validation](02-invoice-extraction/) | Extracts fields from PDF/PNG/JPG invoices, validates amounts and dates, dedupes, stores in Google Sheets, alerts on Telegram | Webhook, Gemini, Google Sheets, Telegram |
-| 3 | [AI Email Triage & Routing](03-email-triage/) | Classifies and prioritizes incoming email, routes it to the right queue, alerts staff on urgent items. Never replies to anyone | Gmail, Gemini, Google Sheets, Telegram |
+The focus is not just adding AI to a workflow. Each automation includes validation, structured outputs, routing logic, error handling, and human review where appropriate.
 
-## What these demos show
+## Showcases
 
-- **Reliable AI output:** structured JSON schemas, strict validation, retries, and a `NEEDS_REVIEW` path whenever the model fails or is unsure.
-- **Prompt-injection awareness:** input is wrapped as untrusted data, suspicious instructions are flagged, and final decisions are made by code.
-- **Idempotency:** duplicates are detected (file hash, vendor + invoice number, email ID, lead email) before any paid AI call.
-- **Safe failure:** records are saved before alerts are sent, and a failed alert never loses data.
-- **Built-in tests:** every demo comes with synthetic test data covering normal, edge-case, duplicate, injection and failure scenarios.
+### 01 — AI Lead Qualification & Routing
 
-## Quick start
+**Business problem**
 
-1. Pick a demo folder and read its README.
-2. Import the workflow JSON into n8n.
-3. Create your own credentials (Gemini API key as Header Auth, Google Sheets, Telegram) and fill the placeholders.
-4. Run the test cases and compare against the expected results in the README.
+Sales teams receive many incoming leads and need to quickly determine which opportunities deserve attention.
 
-No credentials, production URLs or real data are included in this repository. All sample data is synthetic.
+**Workflow**
 
-## Work with me
+`New Lead → Validate → Normalize → Duplicate Check → AI Qualification → Score → Route`
 
-I build custom n8n workflows and AI integrations to your requirements: new automations, AI steps added to existing flows, fixing or hardening workflows that already exist.
+The workflow evaluates lead information and produces:
 
+- Lead score
+- Priority
+- Confidence
+- Qualification reasons
+- Missing information
+- Recommended action
+
+It routes leads into outcomes such as `HOT`, `WARM`, `COLD`, or `NEEDS_REVIEW`.
+
+**Highlights**
+
+- Input validation and normalization
+- Duplicate handling
+- Structured AI output
+- Confidence-based review
+- Deterministic security checks
+- Sales routing
+
+[View Lead Qualification →](./showcase-upload/01-lead-qualification/)
+
+---
+
+### 02 — AI Invoice Extraction & Validation
+
+**Business problem**
+
+Invoice information often arrives in unstructured documents. Manually extracting and checking the data is repetitive and error-prone.
+
+**Workflow**
+
+`Invoice Input → Extract → Validate → Normalize → Deduplicate → Determine Status → Store / Review`
+
+The workflow extracts structured invoice information and uses deterministic logic for validation and downstream decisions.
+
+**Highlights**
+
+- Structured invoice extraction
+- Field validation
+- Duplicate handling
+- Due-date/status logic
+- Human review for uncertain cases
+- Structured storage
+
+[View Invoice Extraction →](./showcase-upload/02-invoice-extraction/)
+
+---
+
+### 03 — AI Email Triage & Routing
+
+**Business problem**
+
+Shared business inboxes often contain sales requests, support issues, billing questions, internal messages, and irrelevant emails.
+
+**Workflow**
+
+`Email → Understand → Classify → Prioritize → Route`
+
+The workflow classifies incoming emails and produces:
+
+- Category
+- Priority
+- Confidence
+- Reason
+- Recommended action
+- Review status
+
+It routes messages to the appropriate queue and alerts humans when required.
+
+**Highlights**
+
+- Gmail/webhook/manual input handling
+- Structured AI classification
+- Priority routing
+- Duplicate/thread handling
+- Prompt-injection safeguards
+- Retry and error handling
+- Human review
+- No automatic email replies
+
+[View Email Triage →](./showcase-upload/03-email-triage/)
+
+---
+
+## Approach
+
+My automation approach is:
+
+```text
+Input
+  ↓
+Validate
+  ↓
+Normalize
+  ↓
+AI / Rules
+  ↓
+Validate Decision
+  ↓
+Route
+  ↓
+Human Review when needed
