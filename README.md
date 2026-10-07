@@ -123,3 +123,32 @@ Validate Decision
 Route
   ↓
 Human Review when needed
+```
+AI is used where unstructured information needs interpretation.
+Deterministic workflow logic is used where predictable validation, routing, deduplication, or business rules are more appropriate.
+## Tech
+
+- n8n
+- AI / LLM APIs
+- Webhooks
+- Gmail
+- Google Sheets
+- Telegram
+- JSON
+- JavaScript
+
+## Security & Data Handling
+
+The public workflows use synthetic/example data and are prepared for public inspection.
+
+Credentials and secret values are not included in the public workflow exports.
+
+AI-assisted workflows treat external text as untrusted input and include validation/review boundaries where appropriate.
+
+For real deployments, integrations and data-handling requirements should be reviewed against the customer's environment and provider policies.
+
+## About
+
+I build practical n8n automations for businesses that want to reduce repetitive manual work and connect AI with existing workflows.
+
+If you need an n8n workflow built, debugged, or improved, feel free to reach out.
